@@ -11,14 +11,11 @@ import time
 
 def spam_jess(number_of_iterations=None):
 
-    # Set up the WebDriver options
     chrome_options = Options()
-    chrome_options.add_argument("--start-maximized")  # Ensure the browser is not in headless mode
+    chrome_options.add_argument("--start-maximized")  
 
-    # Set up the WebDriver
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
-    # Navigate to the contact page
     driver.get("https://www.jessicabolar.com/contact")
     count = 0
 
@@ -29,7 +26,6 @@ def spam_jess(number_of_iterations=None):
 
             count += 1
 
-            # Wait for the elements to be present
             wait = WebDriverWait(driver, 10)
             fname_field = wait.until(EC.presence_of_element_located((By.ID, "name-yui_3_17_2_1_1564674081737_5858-fname-field")))
             lname_field = wait.until(EC.presence_of_element_located((By.ID, "name-yui_3_17_2_1_1564674081737_5858-lname-field")))
@@ -38,13 +34,12 @@ def spam_jess(number_of_iterations=None):
             describe_project = wait.until(EC.presence_of_element_located((By.ID, "textarea-yui_3_17_2_1_1564673948220_26771-field")))
             submit_button = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@type='submit']")))
 
-            # Fill in the form fields with delays
             fname_field.send_keys("Hugh")
             lname_field.send_keys("Janus")
             email_field.send_keys("getspammed@gmail.com")
             describe_business.send_keys("LOL I figured out how to spam ur website")
             describe_project.send_keys("Get wrekt you n00b")
-            time.sleep(2)  # Wait for 2 seconds
+            time.sleep(1)  
 
             submit_button.click()
             time.sleep(2)
